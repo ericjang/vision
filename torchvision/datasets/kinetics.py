@@ -168,9 +168,9 @@ class Kinetics(VisionDataset):
                 f"The directory {self.split_folder} already exists. "
                 f"If you want to re-download or re-extract the images, delete the directory."
             )
-        tar_path = path.join(self.root, "tars")
-        file_list_path = path.join(self.root, "files")
-
+        tar_path = path.join(self.root, "tars-{split}").format(split=self.split)
+        file_list_path = path.join(self.root, "files-{split}").format(split=self.split)
+        
         split_url = self._TAR_URLS[self.num_classes].format(split=self.split)
         split_url_filepath = path.join(file_list_path, path.basename(split_url))
         if not check_integrity(split_url_filepath):
